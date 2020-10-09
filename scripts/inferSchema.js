@@ -20,9 +20,10 @@ const grandstackCmdArgs = [
   `--neo4j-password`,
   `${NEO4J_PASSWORD}`,
   `--schema-file`,
-  `./api/src/schema.graphql`,
+  `./api/src/${NEO4J_DATABASE}schema.graphql`,
 ]
 
+console.log('>>>>>>>>>>>>>>>>>>> ',grandstackCmd)
 if (NEO4J_ENCRYPTED) {
   grandstackCmdArgs.push(`--encrypted`)
 }

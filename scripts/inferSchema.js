@@ -23,7 +23,6 @@ const grandstackCmdArgs = [
   `./api/src/${NEO4J_DATABASE}schema.graphql`,
 ]
 
-console.log('>>>>>>>>>>>>>>>>>>> ',grandstackCmd)
 if (NEO4J_ENCRYPTED) {
   grandstackCmdArgs.push(`--encrypted`)
 }

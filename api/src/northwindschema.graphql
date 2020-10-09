@@ -1,3 +1,49 @@
+type Category {
+   _id: Long!
+   categoryID: String!
+   categoryName: String!
+   description: String!
+   picture: String!
+   products: [Product] @relation(name: "PART_OF", direction: IN)
+}
+
+type Supplier {
+   _id: Long!
+   address: String!
+   city: String!
+   companyName: String!
+   contactName: String!
+   contactTitle: String!
+   country: String!
+   fax: String!
+   homePage: String!
+   phone: String!
+   postalCode: String!
+   region: String!
+   supplierID: String!
+   supplies: [Product] @relation(name: "SUPPLIES", direction: OUT)
+}
+
+type Order {
+   _id: Long!
+   customerID: String!
+   employeeID: String!
+   freight: String!
+   orderDate: String!
+   orderID: String!
+   requiredDate: String!
+   shipAddress: String!
+   shipCity: String!
+   shipCountry: String!
+   shipName: String!
+   shipPostalCode: String!
+   shipRegion: String!
+   shipVia: String!
+   shippedDate: String!
+   orders: [Product] @relation(name: "ORDERS", direction: OUT)
+   ORDERS_rel: [ORDERS]
+}
+
 type Product {
    _id: Long!
    categoryID: String!
@@ -10,6 +56,21 @@ type Product {
    unitPrice: Float!
    unitsInStock: Int!
    unitsOnOrder: Int!
+   part_of: [Category] @relation(name: "PART_OF", direction: OUT)
+   suppliers: [Supplier] @relation(name: "SUPPLIES", direction: IN)
+   orders: [Order] @relation(name: "ORDERS", direction: IN)
+}
+
+
+
+type ORDERS @relation(name: "ORDERS") {
+  from: Order!
+  to: Product!
+  discount: String!
+  orderID: String!
+  productID: String!
+  quantity: Int!
+  unitPrice: String!
 }
 
 
